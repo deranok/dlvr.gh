@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Motorcycle Delivery | dlvr.gh</title>
+  </head>
+  <body>
+    <h1>dlvr.gh</h1>
+    <form action='/summary_page' method="post">
+      <p>Location (Use as many as possible so that we may find you easier)</p>
+      <ul>
+	<li>Map</li>
+	<li>GhanaPost GPS</li>
+	<li>Description</li>
+	<li>Photo</li>
+      </ul>
+      <p>Payment <br>
+      
+      <input type="radio" name="payment_mode" id="momo" value="momo" checked/>
+      <label for="momo">Mobile Money</label>
+      <br>
+      
+      <input type="radio" name="payment_mode" id="cash" value="cash"/>
+      <label for="momo">Cash</label>
+      <br>
+      </p>
+
+      <p>Item Description</p>
+      <textarea id="item_desc" name="item_desc">
+      My items: Kokonte bag, Yam, Cassava and a brand new iPhone X.
+      </textarea>
+
+      <br>
+      <input type="submit" value="Proceed">
+    </form>
+  </body>
+</html>
