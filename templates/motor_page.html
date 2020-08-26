@@ -2,18 +2,61 @@
 <html>
   <head>
     <title>Motorcycle Delivery | dlvr.gh</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	   crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
   </head>
   <body>
     <h1>dlvr.gh</h1>
-    <form action='/summary_page' method="post">
+    <h2>Motorcycle Delivery</h2>
+
       <p>Location (Use as many as possible so that we may find you easier)</p>
-      <ul>
-	<li>Map</li>
-	<li>GhanaPost GPS</li>
-	<li>Description</li>
-	<li>Photo</li>
-      </ul>
-      <p>Payment <br>
+      <form action="{{ url_for("summary_page") }}" method="post" enctype="multipart/form-data">
+	<h3>Source</h3>
+
+	<label for="source_map">Map</label>
+	<div id="source_map" style="height: 180px;" name="source_map"></div>
+	<input id="source_latlon" name="source_latlon" type="hidden" value="not_set">
+	<br>
+
+	<label for="source_gps">GhanaPost GPS</label>
+	<input type="text" id="source_gps" name="source_gps" minlength="11" maxlength="11"/>
+	<br>
+	
+	<label for="source_desc">Description</label><br>
+	<textarea name="source_desc" id="source_desc" rows="5" cols="50">Example: off-the spintex road, opposite stanchart, abelempke, coca-cola house.
+	</textarea>
+	<br>
+	
+	<label for="source_photo">Photo</label>
+	<input type="file" id="source_photo" name="source_photo" accept="image/png, image/jpeg" value="">
+	<br>
+
+	<h3>Destination</h3>
+
+	<label for="dest_map">Map</label>
+	<div id="dest_map" style="height: 180px;" name="dest_map"></div>
+	<input id="dest_latlon" name="dest_latlon" type="hidden" value="not_set">
+	<br>
+
+	<label for="dest_gps">GhanaPost GPS</label>
+	<input type="text" id="dest_gps" name="dest_gps" minlength="11" maxlength="11"/>
+	<br>
+	
+	<label for="dest_desc">Description</label><br>
+	<textarea name="dest_desc" id="dest_desc" rows="5" cols="50">Example: off-the spintex road, opposite stanchart, abelempke, coca-cola house.
+	</textarea>
+	<br>
+	
+	<label for="dest_photo">Photo</label>
+	<input type="file" id="dest_photo" name="dest_photo" accept="image/png, image/jpeg">
+	<br>
+	
+	<h3>Payment </h3>
       
       <input type="radio" name="payment_mode" id="momo" value="momo" checked/>
       <label for="momo">Mobile Money</label>
@@ -22,15 +65,20 @@
       <input type="radio" name="payment_mode" id="cash" value="cash"/>
       <label for="momo">Cash</label>
       <br>
-      </p>
 
-      <p>Item Description</p>
-      <textarea id="item_desc" name="item_desc">
-      My items: Kokonte bag, Yam, Cassava and a brand new iPhone X.
+      <h3>Phone Number</h3>
+      <label for="tel">Phone No.</label>
+      <input type="text" name="tel" id="tel" minlength="10" maxlength="10"/>
+
+      <h3>Item Description</h3>
+      <textarea id="item_desc" name="item_desc"> My items: Kokonte bag, Yam, Cassava and a brand new iPhone X.
       </textarea>
 
+      <input type="hidden" name="delivery_mode" id="delivery_mode" value="{{ mode }}">
       <br>
       <input type="submit" value="Proceed">
     </form>
+    <a href="{{url_for('landing_page')}}">Back</a>
+    <script src="{{ url_for('static', filename="map.js") }}"></script> 
   </body>
 </html>

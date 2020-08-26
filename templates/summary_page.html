@@ -1,3 +1,6 @@
+{% set current_form = request.args.get('formid')%}
+{% set request_form = summary_forms[current_form]["request_form"] %}
+{% set request_files = summary_forms[current_form]["request_files"]%}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,18 +11,60 @@
 
     <h2>Location</h2>
     <h3>Map</h3>
+    <p>still to come...</p>
     <h3>GhanaPost GPS</h3>
+    <dl>
+      <dt>Source</dt>
+
+      <dd>{{ request_form.get("source_gps", "Not Provided") }}</dd>
+    </dl>
+
+    <dl>
+      <dt>Destination</dt>
+      <dd>{{ request_form.get("dest_gps", "Not Provided")}}</dd>
+    </dl>
+
     <h3>Description</h3>
+    <dl>
+      <dt>Source</dt>
+      <dd>{{ request_form.get("source_desc", "Not Provided")}}</dd>
+    </dl>
+
+    <dl>
+      <dt>Destination</dt>
+      <dd>{{ request_form.get("dest_desc", "Not Provided")}}</dd>
+    </dl>
+
     <h3>Photo</h3>
+    <dl>
+      <dt>Source</dt>
+      <dd>{{ request_files.get("source_photo")}}</dd>
+    </dl>
+
+    <dl>
+      <dt>Destination</dt>
+      <dd>{{ request_files.get("dest_photo")}}</dd>
+    </dl>
 
     <h2>Item Description</h2>
-    <p> List of my items, blah blah blah </p>
+    <p> {{request_form.get("item_desc")}} </p>
 
+    <h2>Payment Mode</h2>
+    <p> {{request_form.get("payment_mode")}} </p>
+
+    <h2>Telephone Number</h2>
+    <p> {{request_form.get("tel")}} </p>
+
+    <h2>Delivery Mode</h2>
+    <p>{{request_form.get("delivery_mode")}}<p>
+        
     <!--  We'll need this when passsing around data
     <input type="submit" formaction="/delivery_mode" formmethod="get" name="dir" value="back"/>
     <input type="submit" formaction="/tracker" formmethod="get" name="dir" value="proceed"/>
     -->
-    <a href="/delivery_mode">back</a>
+    <a href="{{ url_for('delivery_mode', mode=request_form.get("delivery_mode", "not_found")) }}">back</a>
     <a href="/tracker">proceed</a>
+
+    <p></p>
   </body>
 </html>
