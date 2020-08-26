@@ -3,7 +3,7 @@ var mylocation = [6.099216, -0.018239]
 var source_map = L.map('source_map').setView(mylocation, 13);
 var dest_map = L.map('dest_map').setView(mylocation, 13);
 
-var default_public_token = "pk.eyJ1IjoibWFwbm9xIiwiYSI6ImNrZTc4aXdweTEwY2wycXJ6cTg5NTE3aGsifQ.6soHRBucYxXoipUTzwvX5Q"
+
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
